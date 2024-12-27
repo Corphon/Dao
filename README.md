@@ -1,8 +1,6 @@
-# Dao System
+# Dao Framework
 
-## Project Overview
-
-The Dao System is a simulation framework inspired by the Daoist concept of "Dao begets One, One begets Two, Two begets Three, Three begets all things". It aims to demonstrate the self-organizing behavior and diversity of nature by simulating the evolution of complex systems. This project adopts a modular architecture that supports flexible extensions and efficient parallel computing.
+Dao is a lightweight, flexible framework designed for grid-based simulations. It focuses on simplicity, modularity, and extensibility, allowing developers to create complex simulations with minimal effort.
 
 ## Project Structure
 
@@ -25,39 +23,96 @@ Dao/
 
 ## Core Philosophy
 
-The core philosophy of Daoism is the natural self-organization and evolution process. This project embodies this philosophy through the following layers to simulate the evolution of complex systems:
-
-1. **Dao begets One**:
-   - Defines the basic units and state management, including state definitions, cell management, and basic computations.
-
-2. **One begets Two**:
-   - Handles environmental interactions and dynamic evolution, including environment modeling, periodic changes, and state updates.
-
-3. **Two begets Three**:
-   - Responsible for global system analysis and simulation, including grid creation, system behavior analysis, and result statistics.
-
-4. **Three begets All Things**:
-   - Responsible for visualization, logging, and user interaction, including graphical rendering, log recording, and UI interfaces.
+The Dao framework is inspired by the philosophy of "Dao" (道), which emphasizes simplicity, naturalness, and balance. The core principles of the framework are:
+1. **Simplicity**: Keep the core interfaces and implementations minimal and intuitive.
+2. **Modularity**: Allow for easy extension and customization through well-defined interfaces.
+3. **Extensibility**: Provide the flexibility to build complex simulations by extending basic components.
 
 ## Features
 
-- **Cell Behavior Modeling**: Define and simulate the behavior of individual cells.
-- **Environmental Interaction**: Model how the environment affects cells and their interactions.
-- **Grid Management**: Efficiently manage and update the state of a grid of cells.
-- **Event System**: Handle events and interactions within the simulation.
-- **Parallel Computing**: Utilize a worker pool for efficient parallel computation.
-- **Visualization**: Render the simulation in real-time for analysis and presentation.
-- **Analytics**: Collect and analyze metrics from the simulation.
+- **Core Interfaces**: Simple and clear interfaces for entities, cells, and grids.
+- **Concurrent Processing**: Efficient task management with a built-in worker pool.
+- **Unique Identifiers**: Utility for generating unique IDs.
+- **Configuration Management**: Easy-to-use configuration system.
 
-## Usage
+## Getting Started
 
-### Download and Installation
+### Installation
 
-1. Clone the project:
-   ```sh
-   git clone https://github.com/Corphon/Dao.git
-   cd Dao
-   ```
+To use the Dao framework, you can simply import it into your Go project:
+
+```bash
+go get github.com/Corphon/dao
+
+## Basic Usage
+Here is a basic example demonstrating how to use the Dao framework to create a simple simulation:
+
+``` go
+package main
+
+import (
+    "github.com/Corphon/dao/config"
+    "github.com/Corphon/dao/core/concurrent"
+    "github.com/Corphon/dao/core/interfaces"
+    "github.com/Corphon/dao/core/util"
+    "fmt"
+)
+
+// Define a simple Cell implementation
+type SimpleCell struct {
+    id    string
+    state int
+}
+
+func NewSimpleCell(state int) *SimpleCell {
+    return &SimpleCell{
+        id:    util.GenerateID(),
+        state: state,
+    }
+}
+
+func (c *SimpleCell) ID() string {
+    return c.id
+}
+
+func (c *SimpleCell) Update() error {
+    // Update cell state logic
+    return nil
+}
+
+func (c *SimpleCell) GetState() int {
+    return c.state
+}
+
+func (c *SimpleCell) Clone() (interfaces.Cell, error) {
+    return &SimpleCell{
+        id:    util.GenerateID(),
+        state: c.state,
+    }, nil
+}
+
+
+func main() {
+    // Load configuration
+    cfg := config.NewDefaultConfig()
+
+    // Create a worker pool
+    pool := concurrent.NewWorkerPool(cfg.Workers)
+    defer pool.Stop()
+
+    // Example: Create and update cells
+    cell := NewSimpleCell(1)
+    task := concurrent.Task{
+        ID: util.GenerateID(),
+        Fn: cell.Update,
+    }
+
+    pool.Submit(task)
+    pool.Wait()
+    
+    fmt.Println("Simulation completed.")
+}
+```
 
 ### Open Source and Contributions
 

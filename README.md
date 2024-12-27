@@ -55,74 +55,9 @@ The core philosophy of Daoism is the natural self-organization and evolution pro
 
 1. Clone the project:
    ```sh
-   git clone https://github.com/yourusername/Dao.git
+   git clone https://github.com/Corphon/Dao.git
    cd Dao
    ```
-
-2. Install dependencies:
-   ```sh
-   go mod tidy
-   ```
-
-### Configuration
-
-Edit the `config.json` file to configure the simulation parameters according to your needs:
-
-```json
-{
-  "grid": {
-    "width": 100,
-    "height": 100
-  },
-  "environment": {
-    "initial_temperature": 25.0,
-    "initial_humidity": 0.5,
-    "resources": {
-      "water": 1.0,
-      "nutrients": 1.0
-    },
-    "seasons": [
-      {
-        "name": "Spring",
-        "duration": 30,
-        "modifiers": {
-          "tempChange": 1.0,
-          "humidityChange": 0.1
-        }
-      },
-      {
-        "name": "Summer",
-        "duration": 30,
-        "modifiers": {
-          "tempChange": 2.0,
-          "humidityChange": -0.1
-        }
-      }
-    ]
-  },
-  "simulation": {
-    "generations": 100,
-    "worker_count": 4,
-    "update_rate": 100
-  },
-  "visualization": {
-    "cell_size": 10,
-    "color_map": {
-      "0": "#000000", // Yin
-      "1": "#FFFFFF", // Yang
-      "2": "#AAAAAA"  // Middle
-    }
-  }
-}
-```
-
-### Running the Simulation
-
-Run the simulation with the following command:
-
-```sh
-go run cmd/main.go
-```
 
 ### Open Source and Contributions
 

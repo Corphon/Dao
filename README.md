@@ -8,44 +8,19 @@ The Dao System is a simulation framework inspired by the Daoist concept of "Dao 
 
 ```
 Dao/
-├── cmd/
-│   └── main.go
-├── internal/
-│   ├── interfaces/
-│   │   ├── cell.go
-│   │   ├── environment.go
-│   │   ├── grid.go
-│   │   └── observer.go
-│   ├── models/
-│   │   ├── cell.go
-│   │   ├── environment.go
-│   │   └── rule.go
-│   ├── grid/
-│   │   ├── grid.go
-│   │   └── partition.go
-│   ├── events/
-│   │   ├── manager.go
-│   │   ├── event.go
-│   │   └── listener.go
-│   └── concurrent/
-│       ├── worker_pool.go
-│       └── task.go
-├── pkg/
-│   ├── config/
-│   │   ├── config.go
-│   │   └── validator.go
-│   ├── visualization/
-│   │   ├── renderer.go
-│   │   └── window.go
-│   ├── analytics/
-│   │   ├── collector.go
-│   │   ├── metrics.go
-│   │   └── report.go
-│   └── logger/
-│       ├── logger.go
-│       └── formatter.go
 ├── go.mod
-└── go.sum
+├── core/
+│   ├── interfaces/
+│   │   ├── base.go
+│   │   └── grid.go
+│   ├── concurrent/
+│   │   └── worker.go
+│   └── util/
+│       └── id.go
+├── config/
+│   └── config.go
+└── examples/
+    └── README.md
 ```
 
 ## Core Philosophy

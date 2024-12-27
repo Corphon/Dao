@@ -43,7 +43,7 @@ To use the Dao framework, you can simply import it into your Go project:
 
 ```bash
 go get github.com/Corphon/dao
-
+```
 ## Basic Usage
 Here is a basic example demonstrating how to use the Dao framework to create a simple simulation:
 
